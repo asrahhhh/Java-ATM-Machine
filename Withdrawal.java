@@ -1,7 +1,7 @@
 public class Withdrawal extends Transaction {
-    private int amount;  // Fixed: Added missing semicolon and corrected variable name
-    private Keypad keypad;  // Fixed: Added missing type declaration
-    private CashDispenser cashDispenser;  // Fixed: Corrected variable name
+    private int amount;
+    private Keypad keypad;
+    private CashDispenser cashDispenser;
 
     private final static int CANCELED = 6;
 
@@ -22,16 +22,16 @@ public class Withdrawal extends Transaction {
         Screen screen = getScreen();
 
         do {
-            int amount = displayMenuOfAmounts();  // Fixed: Get the user's choice
+            int userChoice = displayMenuOfAmounts();
 
-            if (amount != CANCELED) {
+            if (userChoice != CANCELED) {
                 availableBalance = bankDatabase.getAvailableBalance(getAccountNumber());
 
-                if (amount <= availableBalance) {
-                    if (cashDispenser.isSufficientCashAvailable(amount)) {
-                        bankDatabase.debit(getAccountNumber(), amount);
+                if (userChoice <= availableBalance) {
+                    if (cashDispenser.isSufficientCashAvailable(userChoice)) {
+                        bankDatabase.debit(getAccountNumber(), userChoice);
 
-                        cashDispenser.dispenseCash(amount);
+                        cashDispenser.dispenseCash(userChoice);
                         cashDispensed = true;
 
                         screen.displayMessageLine("\nCash dispensed successfully.");

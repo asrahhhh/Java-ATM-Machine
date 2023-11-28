@@ -1,39 +1,41 @@
 public class Account {
     private int accountNumber;
     private int pin;
-    private double avalableBalance;
+    private double availableBalance; 
     private double totalBalance;
 
     public Account(int theAccountNumber, int thePIN, double theAvailableBalance, double theTotalBalance){
         accountNumber = theAccountNumber;
         pin = thePIN;
-        availableBalance = theAvailableBalance;
+        availableBalance = theAvailableBalance;  
         totalBalance = theTotalBalance;
     }
 
     public boolean validatePIN(int userPIN){
-        if(userPIN == pin){
-            return true;
-        }else{
-            return false;
-        }
-    }
+        return userPIN == pin; 
+
     public double getAvailableBalance(){
         return availableBalance;
     }
+
     public double getTotalBalance(){
-        return TotalBalance;
+        return totalBalance;  
     }
 
     public void credit(double amount){
         totalBalance += amount;
     }
-    
+
     public void debit(double amount){
-        availableBalance -= amount;
-        totalBalance -= amount;
+        if (amount > availableBalance) {
+            System.out.println("Insufficient funds"); 
+        } else {
+            availableBalance -= amount;
+            totalBalance -= amount;
+        }
     }
+
     public int getAccountNumber(){
-        return getAccountNumber;
+        return accountNumber;  
     }
 }
