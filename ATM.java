@@ -54,7 +54,7 @@ public class ATM{
         }
     }
     private void performTransactions(){
-        Transaction curreTransaction = null;
+        Transaction currentTransaction = null;
         boolean userExited = false;
 
         while(!userExited){
@@ -98,8 +98,10 @@ public class ATM{
                 break;
             case WITHDRAWAL:
                 temp = new Withdrawal(currentAccountNumber, screen, bankDatabase, keypad, cashDispenser);
+                break;
             case DEPOSIT:
                 temp = new Deposit(currentAccountNumber, screen, bankDatabase, keypad, depositSlot); 
+                break;
         }
         return temp;
 
